@@ -1,0 +1,274 @@
+:root {
+  color-scheme: light dark;
+  --background-color: #f4f6fb;
+  --panel-color: #ffffff;
+  --accent-color: #3563e9;
+  --accent-color-dark: #274bb6;
+  --border-color: #d3d8e8;
+  --text-color: #1f2a44;
+  --muted-text-color: #606b85;
+  --shadow-color: rgba(31, 42, 68, 0.12);
+  font-family: 'Noto Sans KR', 'Segoe UI', sans-serif;
+}
+
+body {
+  margin: 0;
+  background: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+.page-header {
+  padding: 2.5rem 1.5rem 1rem;
+  text-align: center;
+}
+
+.page-header h1 {
+  margin: 0 0 0.5rem;
+  font-size: 1.8rem;
+}
+
+.page-subtitle {
+  margin: 0 auto;
+  max-width: 620px;
+  font-size: 0.95rem;
+  color: var(--muted-text-color);
+}
+
+.layout {
+  display: grid;
+  gap: 1.5rem;
+  padding: 0 1.5rem 3rem;
+}
+
+@media (min-width: 960px) {
+  .layout {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+.panel {
+  background: var(--panel-color);
+  border: 1px solid var(--border-color);
+  border-radius: 18px;
+  padding: 1.75rem;
+  box-shadow: 0 14px 35px -20px var(--shadow-color);
+}
+
+.panel h2 {
+  margin-top: 0;
+  font-size: 1.2rem;
+}
+
+.form {
+  display: grid;
+  gap: 1rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-field label {
+  font-weight: 600;
+}
+
+.form-field input,
+.form-field select {
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-field input:focus,
+.form-field select:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(53, 99, 233, 0.16);
+}
+
+.form-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.primary-button,
+.secondary-button,
+.copy-button {
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  padding: 0.65rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: background-color 0.2s, transform 0.15s;
+}
+
+.primary-button {
+  background: var(--accent-color);
+  color: #fff;
+}
+
+.primary-button:hover {
+  background: var(--accent-color-dark);
+}
+
+.secondary-button {
+  background: #e8ecfb;
+  color: var(--accent-color);
+}
+
+.secondary-button:hover {
+  background: #d7def7;
+}
+
+.status-message {
+  margin-top: 1rem;
+  min-height: 1.3rem;
+  color: var(--accent-color-dark);
+  font-weight: 500;
+}
+
+.status-message.error {
+  color: #d64545;
+}
+
+.helper-text {
+  margin: 1rem 0 0;
+  font-size: 0.85rem;
+  color: var(--muted-text-color);
+}
+
+.helper-text a {
+  color: var(--accent-color-dark);
+  text-decoration: none;
+}
+
+.helper-text a:hover {
+  text-decoration: underline;
+}
+
+.result-list {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+  max-height: 600px;
+  overflow-y: auto;
+  padding-right: 0.25rem;
+}
+
+.result-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.result-list::-webkit-scrollbar-thumb {
+  background: rgba(31, 42, 68, 0.25);
+  border-radius: 999px;
+}
+
+.result-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.result-empty {
+  padding: 1.25rem;
+  border: 1px dashed var(--border-color);
+  border-radius: 12px;
+  text-align: center;
+  color: var(--muted-text-color);
+  background: #f6f8ff;
+}
+
+.result-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  background: #f9fbff;
+}
+
+.address-content {
+  flex: 1;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.address-line {
+  margin: 0;
+  font-weight: 600;
+}
+
+.address-extra {
+  margin: 0;
+  color: var(--muted-text-color);
+  font-size: 0.85rem;
+}
+
+.copy-button {
+  background: #fff;
+  border: 1px solid var(--accent-color);
+  color: var(--accent-color);
+}
+
+.copy-button:hover {
+  background: rgba(53, 99, 233, 0.08);
+}
+
+.postcode-layer {
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 19, 43, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  z-index: 1000;
+}
+
+.postcode-layer.hidden {
+  display: none;
+}
+
+.postcode-wrapper {
+  width: min(520px, 100%);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 25px 45px -30px rgba(15, 25, 55, 0.45);
+}
+
+.postcode-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: #1f2a44;
+  color: #fff;
+  border-radius: 14px 14px 0 0;
+}
+
+.postcode-container {
+  width: min(480px, 100%);
+  height: 520px;
+  background: #fff;
+  border-radius: 0 0 14px 14px;
+  overflow: hidden;
+}
+
+#close-layer {
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-size: 1.1rem;
+  cursor: pointer;
+}

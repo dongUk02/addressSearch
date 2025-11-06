@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>행정구역 기반 주소 자동 완성</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="page-header">
+      <h1>행정구역 기반 공동주택 주소 검색</h1>
+      <p class="page-subtitle">
+        광역시·도와 시·군·구를 선택한 뒤, 카카오 우편번호 서비스를 이용해
+        실제 공동주택 주소를 수집하고 복사할 수 있습니다.
+      </p>
+    </header>
+
+    <main class="layout">
+      <section class="panel" aria-labelledby="search-title">
+        <h2 id="search-title">검색 조건</h2>
+        <form id="address-form" class="form">
+          <div class="form-field">
+            <label for="sido-select">광역시·도</label>
+            <select id="sido-select" name="sido" required>
+              <option value="">광역시·도를 선택하세요</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="sigungu-select">시·군·구</label>
+            <select id="sigungu-select" name="sigungu" required disabled>
+              <option value="">시·군·구를 선택하세요</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="keyword-input">추가 검색어 (선택)</label>
+            <input
+              id="keyword-input"
+              name="keyword"
+              type="text"
+              placeholder="예: 아파트 이름, 동호수"
+              maxlength="40"
+            />
+          </div>
+          <div class="form-field">
+            <label for="max-results">최대 저장 개수</label>
+            <input
+              id="max-results"
+              name="maxResults"
+              type="number"
+              min="1"
+              max="30"
+              value="10"
+              required
+            />
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="primary-button">검색</button>
+            <button type="button" id="reset-button" class="secondary-button">
+              초기화
+            </button>
+          </div>
+        </form>
+        <p class="helper-text" data-helper-text>
+          <span data-helper-text-primary
+            >검색 버튼을 누르면 선택한 행정구역의 공동주택 목록을 불러옵니다.</span
+          >
+          <span data-postcode-helper>
+            팝업 검색이 필요한 경우
+            <a
+              href="https://postcode.map.daum.net/guide"
+              target="_blank"
+              rel="noopener noreferrer"
+              >카카오 우편번호 가이드</a
+            >
+            를 참고하세요.
+          </span>
+        </p>
+        <div id="status-message" class="status-message" role="status"></div>
+      </section>
+
+      <section class="panel" aria-labelledby="result-title">
+        <h2 id="result-title">검색 결과</h2>
+        <ul id="result-list" class="result-list" aria-live="polite"></ul>
+      </section>
+    </main>
+
+    <div id="postcode-layer" class="postcode-layer hidden" role="dialog" aria-modal="true">
+      <div class="postcode-wrapper">
+        <div class="postcode-header">
+          <strong>공동주택 주소 검색</strong>
+          <button type="button" id="close-layer" aria-label="검색 닫기">✕</button>
+        </div>
+        <div id="postcode-container" class="postcode-container"></div>
+      </div>
+    </div>
+
+    <template id="result-item-template">
+      <li class="result-item">
+        <div class="address-content">
+          <p class="address-line"></p>
+          <p class="address-extra"></p>
+        </div>
+        <button type="button" class="copy-button">주소 복사</button>
+      </li>
+    </template>
+
+    <script
+      src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"
+      defer
+    ></script>
+    <script src="./config.js" defer></script>
+    <script src="./app.js" defer></script>
+  </body>
+</html>
